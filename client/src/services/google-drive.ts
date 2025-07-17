@@ -85,9 +85,10 @@ export class GoogleDriveService {
       await this.authInstance.signIn();
       console.log('Successfully signed in to Google');
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Authorization failed:', error);
-      throw error; // Re-throw so the UI can handle it properly
+      // Don't re-throw the error to prevent runtime crashes
+      return false;
     }
   }
 

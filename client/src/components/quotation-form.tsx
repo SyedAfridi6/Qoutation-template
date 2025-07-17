@@ -126,12 +126,8 @@ export function QuotationForm() {
           title: "Connected",
           description: "Successfully connected to Google Drive",
         });
-      }
-    } catch (error: any) {
-      console.error('Google Drive connection failed:', error);
-      
-      // Check if it's a domain authorization error
-      if (error.error === 'idpiframe_initialization_failed') {
+      } else {
+        // Handle failed authorization (no error thrown)
         toast({
           title: "Domain Authorization Required",
           description: "Please add this domain to your Google Cloud Console authorized origins. Check the console for the exact domain.",
@@ -147,13 +143,14 @@ export function QuotationForm() {
         console.log('   https://8f28eda1-59d8-43b0-b507-23f8e04f08f3-00-1buwwaqtzrc4d.janeway.replit.dev');
         console.log('5. Save and try connecting again');
         console.log('=====================================');
-      } else {
-        toast({
-          title: "Google Drive Connection Failed",
-          description: error.message || "Failed to connect to Google Drive. Please check your credentials.",
-          variant: "destructive",
-        });
       }
+    } catch (error: any) {
+      console.error('Google Drive connection failed:', error);
+      toast({
+        title: "Google Drive Connection Failed",
+        description: "Failed to connect to Google Drive. Please check your credentials.",
+        variant: "destructive",
+      });
     } finally {
       setIsConnecting(false);
     }
