@@ -51,6 +51,9 @@ Preferred communication style: Simple, everyday language.
 - **OAuth Authentication**: Google OAuth for secure access to user's Drive
 - **Excel Export**: Form data exported to Excel format and stored in Google Drive
 - **Automatic File Management**: Creates new files or appends to existing ones
+- **CSV Export Fallback**: Direct CSV download when Google Drive is not connected
+- **Domain Authorization**: Requires domain registration in Google Cloud Console
+- **Error Handling**: Detailed error messages for troubleshooting OAuth issues
 
 ## Data Flow
 

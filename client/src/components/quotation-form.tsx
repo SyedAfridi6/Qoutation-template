@@ -15,7 +15,8 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { QuotationCalculator, type QuotationResult } from "@/services/quotation-calculator";
 import { GoogleDriveService } from "@/services/google-drive";
-import { Calculator, User, FolderOpen, Palette, CheckSquare, Wrench, Loader2, FileText, Save, RotateCcw, Check } from "lucide-react";
+import { CSVExportService } from "@/services/csv-export";
+import { Calculator, User, FolderOpen, Palette, CheckSquare, Wrench, Loader2, FileText, Save, RotateCcw, Check, Download, FileSpreadsheet } from "lucide-react";
 
 const quotationSchema = z.object({
   clientName: z.string().min(1, "Client name is required"),
@@ -128,11 +129,31 @@ export function QuotationForm() {
       }
     } catch (error: any) {
       console.error('Google Drive connection failed:', error);
-      toast({
-        title: "Google Drive Connection Failed",
-        description: error.message || "Failed to connect to Google Drive. Please check your credentials.",
-        variant: "destructive",
-      });
+      
+      // Check if it's a domain authorization error
+      if (error.error === 'idpiframe_initialization_failed') {
+        toast({
+          title: "Domain Authorization Required",
+          description: "Please add this domain to your Google Cloud Console authorized origins. Check the console for the exact domain.",
+          variant: "destructive",
+        });
+        
+        // Show the domain info in console for easy copy-paste
+        console.log('==== GOOGLE OAUTH SETUP REQUIRED ====');
+        console.log('1. Go to: https://console.developers.google.com/');
+        console.log('2. Select your project');
+        console.log('3. Go to Credentials > OAuth 2.0 Client IDs');
+        console.log('4. Add this domain to "Authorized JavaScript origins":');
+        console.log('   https://8f28eda1-59d8-43b0-b507-23f8e04f08f3-00-1buwwaqtzrc4d.janeway.replit.dev');
+        console.log('5. Save and try connecting again');
+        console.log('=====================================');
+      } else {
+        toast({
+          title: "Google Drive Connection Failed",
+          description: error.message || "Failed to connect to Google Drive. Please check your credentials.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsConnecting(false);
     }
@@ -166,6 +187,25 @@ export function QuotationForm() {
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleExportCSV = () => {
+    if (!quotationResult) return;
+
+    const formData = form.getValues();
+    const dataToExport = {
+      ...formData,
+      subtotal: quotationResult.subtotal,
+      gst: quotationResult.gst,
+      total: quotationResult.total,
+      totalHours: quotationResult.totalHours,
+    };
+
+    CSVExportService.exportQuotationAsCSV(dataToExport);
+    toast({
+      title: "Exported",
+      description: "Quotation exported as CSV file successfully",
+    });
   };
 
   const handleReset = () => {
@@ -823,7 +863,7 @@ export function QuotationForm() {
                       <FileText className="mr-3 text-indigo-600" size={32} />
                       Quotation Results
                     </CardTitle>
-                    <div className="flex space-x-4 mt-4 md:mt-0">
+                    <div className="flex flex-wrap gap-3 mt-4 md:mt-0">
                       <Button
                         variant="outline"
                         className="bg-green-600 text-white hover:bg-green-700"
@@ -831,6 +871,15 @@ export function QuotationForm() {
                       >
                         <FileText className="w-4 h-4 mr-2" />
                         Download PDF
+                      </Button>
+                      
+                      <Button
+                        variant="outline"
+                        className="bg-emerald-600 text-white hover:bg-emerald-700"
+                        onClick={handleExportCSV}
+                      >
+                        <FileSpreadsheet className="w-4 h-4 mr-2" />
+                        Export CSV
                       </Button>
                       
                       {isGoogleDriveConnected && (
