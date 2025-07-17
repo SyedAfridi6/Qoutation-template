@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development Quotation Estimator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-calculator"></i> Website Development Quotation Estimator</h1>
+                <p>Get accurate project estimates with detailed breakdowns</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <form id="quotationForm" class="quotation-form">
+                <!-- Client Information -->
+                <section class="form-section">
+                    <h2><i class="fas fa-user"></i> Client Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="clientName">Client Name *</label>
+                            <input type="text" id="clientName" name="clientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" id="companyName" name="companyName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectTitle">Project Title *</label>
+                            <input type="text" id="projectTitle" name="projectTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="budgetRange">Budget Range</label>
+                            <select id="budgetRange" name="budgetRange">
+                                <option value="">Select Budget Range</option>
+                                <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+                                <option value="100000-200000">₹1,00,000 - ₹2,00,000</option>
+                                <option value="200000-350000">₹2,00,000 - ₹3,50,000</option>
+                                <option value="350000-500000">₹3,50,000 - ₹5,00,000</option>
+                                <option value="500000+">₹5,00,000+</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project Overview -->
+                <section class="form-section">
+                    <h2><i class="fas fa-project-diagram"></i> Project Overview</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="projectGoals">Project Goal *</label>
+                            <textarea id="projectGoals" name="projectGoals" rows="3" required placeholder="Describe the main objectives of your project"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectType">Project Type *</label>
+                            <select id="projectType" name="projectType" required>
+                                <option value="">Select Project Type</option>
+                                <option value="informational">Informational/Business Website</option>
+                                <option value="ecommerce">E-Commerce Website</option>
+                                <option value="booking">Booking/Appointment System</option>
+                                <option value="membership">Membership/Community Site</option>
+                                <option value="dashboard">Internal Tool/Dashboard</option>
+                                <option value="portfolio">Portfolio/Blog</option>
+                                <option value="webapp">Custom Web Application</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="targetAudience">Target Audience</label>
+                            <select id="targetAudience" name="targetAudience">
+                                <option value="b2b">B2B (Business to Business)</option>
+                                <option value="b2c">B2C (Business to Consumer)</option>
+                                <option value="internal">Internal Use</option>
+                                <option value="international">International/Multilingual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="numberOfPages">Number of Pages</label>
+                            <select id="numberOfPages" name="numberOfPages">
+                                <option value="1-5">1-5 Pages</option>
+                                <option value="6-10">6-10 Pages</option>
+                                <option value="11-20">11-20 Pages</option>
+                                <option value="20+">20+ Pages</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Preferred Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="normal">Normal (4-6 weeks)</option>
+                                <option value="fast">Fast Track (2-3 weeks)</option>
+                                <option value="rush">Rush (Under 10 days)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectComplexity">Overall Project Complexity</label>
+                            <select id="projectComplexity" name="projectComplexity">
+                                <option value="simple">Simple (Basic website)</option>
+                                <option value="moderate">Moderate (Standard features)</option>
+                                <option value="complex">Complex (E-commerce or advanced features)</option>
+                                <option value="enterprise">Enterprise (Custom solutions)</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technology Requirements-->
+                <section class="form-section tech-stack">
+                    <h2><i class="fas fa-cogs"></i> Technology & Project Requirements</h2>
+                    <div class="form-grid">
+                        <!-- Front-End Technologies -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="frontend-enabled" checked>
+                                <label for="frontend-enabled"><strong>Front-End Technologies</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-html5" name="frontendTech" value="HTML5">
+                                    <label for="frontend-html5">HTML5</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-css3" name="frontendTech" value="CSS3">
+                                    <label for="frontend-css3">CSS3</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-js" name="frontendTech" value="JavaScript">
+                                    <label for="frontend-js">JavaScript</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-react" name="frontendTech" value="React">
+                                    <label for="frontend-react">React</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-angular" name="frontendTech" value="Angular">
+                                    <label for="frontend-angular">Angular</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="frontend-vue" name="frontendTech" value="Vue">
+                                    <label for="frontend-vue">Vue</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Back-End Technologies -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="backend-enabled" checked>
+                                <label for="backend-enabled"><strong>Back-End Technologies</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="backend-node" name="backendTech" value="Node.js">
+                                    <label for="backend-node">Node.js</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="backend-django" name="backendTech" value="Django">
+                                    <label for="backend-django">Django</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="backend-laravel" name="backendTech" value="Laravel">
+                                    <label for="backend-laravel">Laravel</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="backend-spring" name="backendTech" value="Spring Boot">
+                                    <label for="backend-spring">Spring Boot</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Database -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="database-enabled" checked>
+                                <label for="database-enabled"><strong>Preferred Database</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="db-mysql" name="database" value="MySQL">
+                                    <label for="db-mysql">MySQL</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="db-postgres" name="database" value="PostgreSQL">
+                                    <label for="db-postgres">PostgreSQL</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="db-mongo" name="database" value="MongoDB">
+                                    <label for="db-mongo">MongoDB</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hosting Platform -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="hosting-enabled" checked>
+                                <label for="hosting-enabled"><strong>Hosting Platform</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hosting-aws" name="hosting" value="AWS">
+                                    <label for="hosting-aws">AWS</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hosting-digitalocean" name="hosting" value="DigitalOcean">
+                                    <label for="hosting-digitalocean">DigitalOcean</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hosting-vercel" name="hosting" value="Vercel">
+                                    <label for="hosting-vercel">Vercel</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hosting-heroku" name="hosting" value="Heroku">
+                                    <label for="hosting-heroku">Heroku</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Development Tools -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="devtools-enabled" checked>
+                                <label for="devtools-enabled"><strong>Development Tools</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="devtools-github" name="devTools" value="GitHub">
+                                    <label for="devtools-github">GitHub</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="devtools-figma" name="devTools" value="Figma">
+                                    <label for="devtools-figma">Figma</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="devtools-slack" name="devTools" value="Slack">
+                                    <label for="devtools-slack">Slack</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="devtools-postman" name="devTools" value="Postman">
+                                    <label for="devtools-postman">Postman</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Devices Supported -->
+                        <div class="form-group">
+                            <div class="checkbox-item checkbox-head">
+                                <input type="checkbox" id="devices-enabled" checked>
+                                <label for="devices-enabled"><strong>Devices Supported</strong></label>
+                            </div>
+                            <div class="checkbox-list">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="device-desktop" name="devices" value="Desktop">
+                                    <label for="device-desktop">Desktop</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="device-tablet" name="devices" value="Tablet">
+                                    <label for="device-tablet">Tablet</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="device-mobile" name="devices" value="Mobile">
+                                    <label for="device-mobile">Mobile</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Design Requirements -->
+                <section class="form-section">
+                    <h2><i class="fas fa-paint-brush"></i> Design Requirements</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="designType">Design Type</label>
+                            <select id="designType" name="designType">
+                                <option value="template">Template Based</option>
+                                <option value="custom">Custom Design</option>
+                                <option value="premium">Premium Custom Design</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="brandGuidelines">Brand Guidelines Available?</label>
+                            <select id="brandGuidelines" name="brandGuidelines">
+                                <option value="yes">Yes, I have brand guidelines</option>
+                                <option value="no">No, need brand guidelines</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="logoDesign">Logo Design Needed?</label>
+                            <select id="logoDesign" name="logoDesign">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="designRevisions">Design Revisions</label>
+                            <select id="designRevisions" name="designRevisions">
+                                <option value="5">5 Revisions</option>
+                                <option value="unlimited">Unlimited Revisions</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Functionality Requirements -->
+                <section class="form-section">
+                    <h2><i class="fas fa-cogs"></i> Functionality Requirements</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-userAuth" name="features" value="userAuth">
+                            <label for="feature-userAuth">User Authentication/Login</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-contact" name="features" value="contact">
+                            <label for="feature-contact">Contact Forms</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-search" name="features" value="search">
+                            <label for="feature-search">Search Functionality</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-booking" name="features" value="booking">
+                            <label for="feature-booking">Booking/Appointment System</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-chatbot" name="features" value="chatbot">
+                            <label for="feature-chatbot">Chatbot Integration</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-ecommerce" name="features" value="ecommerce">
+                            <label for="feature-ecommerce">E-commerce (Cart, Payment)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-cms" name="features" value="cms">
+                            <label for="feature-cms">Content Management System</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-blog" name="features" value="blog">
+                            <label for="feature-blog">Blog/News System</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-multilingual" name="features" value="multilingual">
+                            <label for="feature-multilingual">Multilingual Support</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-analytics" name="features" value="analytics">
+                            <label for="feature-analytics">Google Analytics Integration</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-seo" name="features" value="seo">
+                            <label for="feature-seo">SEO Optimization</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="feature-accessibility" name="features" value="accessibility">
+                            <label for="feature-accessibility">Accessibility Compliance</label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content & CMS -->
+                <section class="form-section">
+                    <h2><i class="fas fa-file-alt"></i> Content & CMS</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="contentProvided">Content Provided by Client?</label>
+                            <select id="contentProvided" name="contentProvided">
+                                <option value="yes">Yes, I'll provide all content</option>
+                                <option value="no">No, need content creation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagesProvided">Images & Media Provided?</label>
+                            <select id="imagesProvided" name="imagesProvided">
+                                <option value="yes">Yes, I'll provide images</option>
+                                <option value="no">No, need stock photography</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cmsType">CMS Platform</label>
+                            <select id="cmsType" name="cmsType">
+                                <option value="none">No CMS needed</option>
+                                <option value="wordpress">WordPress</option>
+                                <option value="custom">Custom CMS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminDashboard">Admin Dashboard Needed?</label>
+                            <select id="adminDashboard" name="adminDashboard">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance & Security -->
+                <section class="form-section">
+                    <h2><i class="fas fa-shield-alt"></i> Performance & Security</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="perf-basic" name="performance" value="basicPerf">
+                            <label for="perf-basic">Basic Performance Optimization</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="perf-advanced" name="performance" value="advancedPerf">
+                            <label for="perf-advanced">Advanced Performance (Core Web Vitals)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="security-enhanced" name="performance" value="security">
+                            <label for="security-enhanced">Enhanced Security Features</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="backup-auto" name="performance" value="backup">
+                            <label for="backup-auto">Automated Backup Setup</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="hosting-setup" name="performance" value="hosting">
+                            <label for="hosting-setup">Hosting Setup Required</label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Risk Assessment -->
+                <section class="form-section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Risk Assessment</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="risk-api" name="risks" value="apiIntegration">
+                            <label for="risk-api">Complex API Integration Required</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="risk-gdpr" name="risks" value="gdprCompliance">
+                            <label for="risk-gdpr">GDPR/PII Compliance Needed</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="risk-scope" name="risks" value="scopeUncertainty">
+                            <label for="risk-scope">Scope Requirements Unclear</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="risk-payment" name="risks" value="multiGateway">
+                            <label for="risk-payment">Multiple Payment Gateways</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="risk-legacy" name="risks" value="legacyIntegration">
+                            <label for="risk-legacy">Legacy System Integration</label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Detailed Feature Requirements -->
+                <section class="form-section">
+                    <h2><i class="fas fa-list-alt"></i> Detailed Feature Requirements</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-static" name="detailedFeatures" value="staticPages">
+                            <label for="detailed-static">Static Pages (5+ pages)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-rbac" name="detailedFeatures" value="roleBasedAccess">
+                            <label for="detailed-rbac">Role-Based Access Control</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-product" name="detailedFeatures" value="productManagement">
+                            <label for="detailed-product">Product Management System</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-cart" name="detailedFeatures" value="shoppingCart">
+                            <label for="detailed-cart">Shopping Cart & Checkout</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-tracking" name="detailedFeatures" value="orderTracking">
+                            <label for="detailed-tracking">Order Tracking System</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-invoice" name="detailedFeatures" value="invoiceGeneration">
+                            <label for="detailed-invoice">Invoice/PDF Generation</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-inventory" name="detailedFeatures" value="inventoryManagement">
+                            <label for="detailed-inventory">Inventory Management</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-push" name="detailedFeatures" value="pushNotifications">
+                            <label for="detailed-push">Push Notifications</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-social" name="detailedFeatures" value="socialMediaLinks">
+                            <label for="detailed-social">Social Media Integration</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-encryption" name="detailedFeatures" value="encryptionGDPR">
+                            <label for="detailed-encryption">Data Encryption & GDPR</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detailed-responsive" name="detailedFeatures" value="responsiveTuning">
+                            <label for="detailed-responsive">Advanced Responsive Design</label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Integration & Data Complexity -->
+                <section class="form-section">
+                    <h2><i class="fas fa-network-wired"></i> Integration & Data Complexity</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="integrationComplexity">Third-party Integrations</label>
+                            <select id="integrationComplexity" name="integrationComplexity">
+                                <option value="none">None required</option>
+                                <option value="basic">Basic (1-2 simple APIs)</option>
+                                <option value="moderate">Moderate (3-5 APIs)</option>
+                                <option value="complex">Complex (5+ APIs or complex integrations)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataComplexity">Data Management Complexity</label>
+                            <select id="dataComplexity" name="dataComplexity">
+                                <option value="simple">Simple (Basic forms, static content)</option>
+                                <option value="moderate">Moderate (User data, basic reporting)</option>
+                                <option value="complex">Complex (E-commerce, inventory, analytics)</option>
+                                <option value="enterprise">Enterprise (Big data, complex workflows)</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Additional Services -->
+                <section class="form-section">
+                    <h2><i class="fas fa-plus-circle"></i> Additional Services</h2>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-domain" name="additional" value="domainSetup">
+                            <label for="additional-domain">Domain Setup</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-migration" name="additional" value="migration">
+                            <label for="additional-migration">Content Migration</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-training" name="additional" value="training">
+                            <label for="additional-training">CMS Training</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-maintenance" name="additional" value="maintenance">
+                            <label for="additional-maintenance">Monthly Maintenance</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-email" name="additional" value="emailMarketing">
+                            <label for="additional-email">Email Marketing Setup</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="additional-crm" name="additional" value="crmIntegration">
+                            <label for="additional-crm">CRM Integration</label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-calculator"></i> Generate Quotation
+                    </button>
+                    <button type="reset" class="btn-secondary">
+                        <i class="fas fa-redo"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quotation Result -->
+            <div id="quotationResult" class="quotation-result" style="display: none;">
+                <div class="result-header">
+                    <h2><i class="fas fa-file-invoice-dollar"></i> Project Quotation</h2>
+                    <div class="export-buttons">
+                        <button id="downloadPdf" class="btn-download">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </button>
+                        <button id="exportExcel" class="btn-excel">
+                            <i class="fas fa-file-excel"></i> Export to Excel
+                        </button>
+                    </div>
+                </div>
+                <div class="result-content" id="resultContent">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
