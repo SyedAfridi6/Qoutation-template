@@ -15,6 +15,11 @@ export class GoogleDriveService {
   async initialize(): Promise<void> {
     if (this.isInitialized) return;
 
+    // Validate credentials
+    if (!this.CLIENT_ID || !this.API_KEY) {
+      throw new Error('Google API credentials not configured. Please check VITE_GOOGLE_CLIENT_ID and VITE_GOOGLE_API_KEY environment variables.');
+    }
+
     return new Promise((resolve, reject) => {
       if (!window.gapi) {
         const script = document.createElement('script');
@@ -22,7 +27,10 @@ export class GoogleDriveService {
         script.onload = () => {
           this.loadGapi().then(resolve).catch(reject);
         };
-        script.onerror = reject;
+        script.onerror = (error) => {
+          console.error('Failed to load Google API script:', error);
+          reject(error);
+        };
         document.head.appendChild(script);
       } else {
         this.loadGapi().then(resolve).catch(reject);
@@ -34,6 +42,10 @@ export class GoogleDriveService {
     return new Promise((resolve, reject) => {
       window.gapi.load('auth2:client', async () => {
         try {
+          console.log('Initializing Google API client...');
+          console.log('Client ID:', this.CLIENT_ID ? 'Set' : 'Not set');
+          console.log('API Key:', this.API_KEY ? 'Set' : 'Not set');
+          
           await window.gapi.client.init({
             apiKey: this.API_KEY,
             clientId: this.CLIENT_ID,
@@ -43,8 +55,10 @@ export class GoogleDriveService {
 
           this.authInstance = window.gapi.auth2.getAuthInstance();
           this.isInitialized = true;
+          console.log('Google API client initialized successfully');
           resolve();
         } catch (error) {
+          console.error('Failed to initialize Google API client:', error);
           reject(error);
         }
       });
@@ -52,20 +66,28 @@ export class GoogleDriveService {
   }
 
   async authorize(): Promise<boolean> {
-    if (!this.isInitialized) {
-      await this.initialize();
-    }
-
     try {
+      if (!this.isInitialized) {
+        console.log('Initializing Google API...');
+        await this.initialize();
+      }
+
+      if (!this.authInstance) {
+        throw new Error('Google Auth instance not available');
+      }
+
       if (this.authInstance.isSignedIn.get()) {
+        console.log('Already signed in to Google');
         return true;
       }
       
+      console.log('Requesting Google sign-in...');
       await this.authInstance.signIn();
+      console.log('Successfully signed in to Google');
       return true;
     } catch (error) {
       console.error('Authorization failed:', error);
-      return false;
+      throw error; // Re-throw so the UI can handle it properly
     }
   }
 

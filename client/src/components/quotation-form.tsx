@@ -117,7 +117,7 @@ export function QuotationForm() {
   const handleGoogleDriveConnect = async () => {
     setIsConnecting(true);
     try {
-      await googleDriveService.initialize();
+      console.log('Connecting to Google Drive...');
       const success = await googleDriveService.authorize();
       if (success) {
         setIsGoogleDriveConnected(true);
@@ -126,10 +126,11 @@ export function QuotationForm() {
           description: "Successfully connected to Google Drive",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Google Drive connection failed:', error);
       toast({
-        title: "Error",
-        description: "Failed to connect to Google Drive",
+        title: "Google Drive Connection Failed",
+        description: error.message || "Failed to connect to Google Drive. Please check your credentials.",
         variant: "destructive",
       });
     } finally {
